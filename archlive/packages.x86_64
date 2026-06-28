@@ -26,9 +26,6 @@ sddm
 sddm-kcm
 networkmanager
 plasma-nm
-pulseaudio
-pulseaudio-alsa
-pulseaudio-bluetooth
 pavucontrol
 alsa-utils
 pipewire
@@ -49,6 +46,8 @@ xf86-video-amdgpu
 xf86-video-intel
 xf86-video-nouveau
 xf86-video-vesa
+
+cronie
 
 # XiaoyangOS - System Tools
 sudo
