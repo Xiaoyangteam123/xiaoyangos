@@ -22,6 +22,8 @@ jobs:
           pacman -S --noconfirm archiso grub syslinux
 
       - name: Build XiaoyangOS ISO
+        env:
+          PACMAN: pacman --noconfirm
         run: |
           mkdir -p /work /out
           mkarchiso -v -w /work -o /out ./archlive
