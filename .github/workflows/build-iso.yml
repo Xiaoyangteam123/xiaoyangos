@@ -5,6 +5,10 @@ on:
   push:
     branches: [main, master]
 
+permissions:
+  contents: write
+  actions: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm archiso grub syslinux
+          pacman -S --noconfirm archiso grub syslinux github-cli
 
       - name: Build XiaoyangOS ISO
         env:
@@ -41,8 +45,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TAG="xiaoyangos-$(date +%Y.%m.%d)"
+          TAG="xiaoyangos-$(date +%Y.%m.%d)-${{ github.run_id }}"
           gh release create "$TAG" ./*.iso \
             --title "XiaoyangOS $(date +%Y.%m.%d)" \
-            --notes "XiaoyangOS - Custom Arch Linux distribution with KDE Plasma. See https://github.com/Xiaoyangteam123/xiaoyangos for details." \
-            --generate-notes || true
+            --notes "XiaoyangOS - Custom Arch Linux distribution with KDE Plasma. Default user: liveuser, password: xiaoyangos."
