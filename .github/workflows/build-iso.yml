@@ -16,10 +16,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install archiso
+      - name: Install dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm archiso
+          pacman -S --noconfirm archiso grub syslinux
 
       - name: Build XiaoyangOS ISO
         run: |
