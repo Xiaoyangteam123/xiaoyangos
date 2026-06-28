@@ -7,7 +7,7 @@ linux-headers
 amd-ucode
 intel-ucode
 mkinitcpio
-mkinitcpio-firmware
+
 
 # XiaoyangOS - Boot
 grub
@@ -17,7 +17,7 @@ os-prober
 
 # XiaoyangOS - KDE Plasma Desktop
 plasma-meta
-plasma-wayland-session
+plasma-desktop
 kde-applications-meta
 kde-gtk-config
 qt5ct
@@ -49,7 +49,6 @@ xf86-video-amdgpu
 xf86-video-intel
 xf86-video-nouveau
 xf86-video-vesa
-xf86-video-vmware
 
 # XiaoyangOS - System Tools
 sudo
@@ -126,8 +125,6 @@ gst-plugins-good
 gst-plugins-bad
 gst-plugins-ugly
 gst-libav
-phonon-qt5
-phonon-qt6
 vlc
 gwenview
 spectacle
