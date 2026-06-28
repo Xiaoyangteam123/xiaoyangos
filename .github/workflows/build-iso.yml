@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm archiso grub syslinux github-cli
+          pacman -S --noconfirm archiso grub syslinux github-cli jq
 
       - name: Build XiaoyangOS ISO
         env:
@@ -43,9 +43,22 @@ jobs:
 
       - name: Create GitHub Release
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TAG="xiaoyangos-$(date +%Y.%m.%d)-${{ github.run_id }}"
-          gh release create "$TAG" ./*.iso \
-            --title "XiaoyangOS $(date +%Y.%m.%d)" \
-            --notes "XiaoyangOS - Custom Arch Linux distribution with KDE Plasma. Default user: liveuser, password: xiaoyangos."
+          TAG="xiaoyangos-$(date +%Y.%m.%d)"
+          echo "Creating release $TAG..."
+          curl -s -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/releases" \
+            -d "{\"tag_name\":\"$TAG\",\"name\":\"XiaoyangOS $(date +%Y.%m.%d)\",\"body\":\"XiaoyangOS - Custom Arch Linux distribution with KDE Plasma.\\nDefault user: liveuser, password: xiaoyangos.\\n\\nISO 鏂囦欢澶у皬: $(ls -lh *.iso | awk '{print $5}')\"}" > release.json
+          cat release.json
+          # Upload ISO as release asset
+          UPLOAD_URL=$(jq -r '.upload_url' release.json | sed 's/{?name,label}//')
+          echo "Upload URL: $UPLOAD_URL"
+          curl -s -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Content-Type: application/octet-stream" \
+            "$UPLOAD_URL?name=$(ls *.iso)" \
+            --data-binary @$(ls *.iso) > upload.json
+          cat upload.json
