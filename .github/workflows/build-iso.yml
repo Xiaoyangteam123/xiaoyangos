@@ -25,12 +25,13 @@ jobs:
         env:
           PACMAN: pacman --noconfirm
         run: |
-          mkdir -p /work /out
-          mkarchiso -v -w /work -o /out ./archlive
+          mkdir -p /tmp/work /tmp/out
+          mkarchiso -v -w /tmp/work -o /tmp/out ./archlive
+          cp /tmp/out/*.iso ./
 
       - name: Upload ISO artifact
         uses: actions/upload-artifact@v4
         with:
           name: XiaoyangOS-ISO
-          path: out/*.iso
+          path: ./*.iso
           compression-level: 0
