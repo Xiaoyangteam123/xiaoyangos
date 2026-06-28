@@ -28,6 +28,7 @@ jobs:
           mkdir -p /tmp/work /tmp/out
           mkarchiso -v -w /tmp/work -o /tmp/out ./archlive
           cp /tmp/out/*.iso ./
+          ls -lh *.iso
 
       - name: Upload ISO artifact
         uses: actions/upload-artifact@v4
@@ -35,3 +36,13 @@ jobs:
           name: XiaoyangOS-ISO
           path: ./*.iso
           compression-level: 0
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="xiaoyangos-$(date +%Y.%m.%d)"
+          gh release create "$TAG" ./*.iso \
+            --title "XiaoyangOS $(date +%Y.%m.%d)" \
+            --notes "XiaoyangOS - Custom Arch Linux distribution with KDE Plasma. See https://github.com/Xiaoyangteam123/xiaoyangos for details." \
+            --generate-notes || true
