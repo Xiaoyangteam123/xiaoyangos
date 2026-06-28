@@ -1,0 +1,5 @@
+[Basic Settings]
+Indexing-Enabled=true
+
+[General]
+exclude filters=.git,.svn,.hg,*.o,*.lo,*.la,*.a,*.lib,*.so,*.dll,*.dylib,*.class,*.pyc,*.swp,*~,*.part,*.rpm,*.deb,*.iso,*.img,*.vdi,*.vmdk,*.vhd

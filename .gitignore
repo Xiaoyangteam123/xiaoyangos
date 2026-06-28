@@ -1,0 +1,13 @@
+#
+# XiaoyangOS - .gitignore
+#
+
+# Build output
+out/
+work/
+*.iso
+*.iso.sig
+
+# OS files
+Thumbs.db
+.DS_Store

@@ -1,0 +1,10 @@
+[General]
+ColorScheme=BreezeDark
+LastUsedScheme=BreezeDark
+TerminalApplication=konsole
+TerminalService=org.kde.konsole
+
+[KDE]
+ColorScheme=BreezeDark
+LookAndFeelPackage=org.kde.breezedark.desktop
+widgetStyle=Breeze

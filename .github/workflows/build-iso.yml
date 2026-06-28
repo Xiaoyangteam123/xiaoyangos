@@ -1,0 +1,34 @@
+name: Build XiaoyangOS ISO
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+      options: --privileged
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install archiso
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm archiso
+
+      - name: Build XiaoyangOS ISO
+        run: |
+          mkdir -p /work /out
+          mkarchiso -v -w /work -o /out ./archlive
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: XiaoyangOS-ISO
+          path: out/*.iso
+          compression-level: 0

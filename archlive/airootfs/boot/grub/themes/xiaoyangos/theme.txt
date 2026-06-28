@@ -1,0 +1,36 @@
+# XiaoyangOS GRUB Theme
+title-text: "XiaoyangOS"
+title-color: "#00BCD4"
+title-font: "DejaVu Sans Bold 18"
+desktop-image: "background.png"
+desktop-color: "#1e1e1e"
+terminal-font: "DejaVu Sans Regular 12"
+
++ boot_menu {
+    left = 25%
+    top = 25%
+    width = 50%
+    height = 50%
+    item_color = "#cccccc"
+    selected_item_color = "#00BCD4"
+    item_height = 32
+    item_padding = 8
+    item_spacing = 4
+    item_font = "DejaVu Sans Regular 14"
+    selected_item_font = "DejaVu Sans Bold 14"
+    selected_item_pixmap_style = "select_*.png"
+    scrollbar = true
+    scrollbar_width = 12
+}
+
++ progress_bar {
+    id = "__timeout__"
+    left = 25%
+    top = 80%
+    width = 50%
+    height = 24
+    bar_color = "#00BCD4"
+    bar_bg_color = "#333333"
+    bar_height = 4
+    text = ""
+}

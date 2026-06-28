@@ -1,0 +1,8 @@
+NAME="XiaoyangOS"
+PRETTY_NAME="XiaoyangOS 2026 (Based on Arch Linux)"
+ID=xiaoyangos
+ID_LIKE=arch
+BUILD_ID=2026.00
+ANSI_COLOR="0;36"
+HOME_URL="https://xiaoyangos.local"
+LOGO=xiaoyangos-logo

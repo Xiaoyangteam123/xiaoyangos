@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# XiaoyangOS Welcome Screen
+# Displayed on first boot of the live environment
+
+DIALOG=${DIALOG=dialog}
+
+$DIALOG --title "Welcome to XiaoyangOS" \
+        --msgbox "\n
+Welcome to XiaoyangOS!\n
+\n
+This is a live environment based on Arch Linux\n
+with the KDE Plasma desktop.\n
+\n
+- To install XiaoyangOS to your hard drive,\n
+  click the \"Install XiaoyangOS\" icon on the desktop.\n
+- Default username: liveuser\n
+- Default password: xiaoyangos\n
+\n
+Enjoy your new system!\n
+" 20 60
